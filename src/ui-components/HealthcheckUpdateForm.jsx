@@ -11,9 +11,10 @@ import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { Healthcheck } from "../models";
 import { fetchByPath, validateField } from "./utils";
 import { DataStore } from "aws-amplify";
-export default function NewForm1(props) {
+export default function HealthcheckUpdateForm(props) {
   const {
-    clearOnSuccess = true,
+    id: idProp,
+    healthcheck: healthcheckModelProp,
     onSuccess,
     onError,
     onSubmit,
@@ -36,13 +37,28 @@ export default function NewForm1(props) {
   const [password, setPassword] = React.useState(initialValues.password);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    setDate(initialValues.date);
-    setTime(initialValues.time);
-    setPlace(initialValues.place);
-    setOption(initialValues.option);
-    setPassword(initialValues.password);
+    const cleanValues = healthcheckRecord
+      ? { ...initialValues, ...healthcheckRecord }
+      : initialValues;
+    setDate(cleanValues.date);
+    setTime(cleanValues.time);
+    setPlace(cleanValues.place);
+    setOption(cleanValues.option);
+    setPassword(cleanValues.password);
     setErrors({});
   };
+  const [healthcheckRecord, setHealthcheckRecord] =
+    React.useState(healthcheckModelProp);
+  React.useEffect(() => {
+    const queryData = async () => {
+      const record = idProp
+        ? await DataStore.query(Healthcheck, idProp)
+        : healthcheckModelProp;
+      setHealthcheckRecord(record);
+    };
+    queryData();
+  }, [idProp, healthcheckModelProp]);
+  React.useEffect(resetStateValues, [healthcheckRecord]);
   const validations = {
     date: [],
     time: [],
@@ -110,12 +126,13 @@ export default function NewForm1(props) {
               modelFields[key] = undefined;
             }
           });
-          await DataStore.save(new Healthcheck(modelFields));
+          await DataStore.save(
+            Healthcheck.copyOf(healthcheckRecord, (updated) => {
+              Object.assign(updated, modelFields);
+            })
+          );
           if (onSuccess) {
             onSuccess(modelFields);
-          }
-          if (clearOnSuccess) {
-            resetStateValues();
           }
         } catch (err) {
           if (onError) {
@@ -123,7 +140,7 @@ export default function NewForm1(props) {
           }
         }
       }}
-      {...getOverrideProps(overrides, "NewForm1")}
+      {...getOverrideProps(overrides, "HealthcheckUpdateForm")}
       {...rest}
     >
       <TextField
@@ -271,13 +288,14 @@ export default function NewForm1(props) {
         {...getOverrideProps(overrides, "CTAFlex")}
       >
         <Button
-          children="Clear"
+          children="Reset"
           type="reset"
           onClick={(event) => {
             event.preventDefault();
             resetStateValues();
           }}
-          {...getOverrideProps(overrides, "ClearButton")}
+          isDisabled={!(idProp || healthcheckModelProp)}
+          {...getOverrideProps(overrides, "ResetButton")}
         ></Button>
         <Flex
           gap="15px"
@@ -287,7 +305,10 @@ export default function NewForm1(props) {
             children="Submit"
             type="submit"
             variation="primary"
-            isDisabled={Object.values(errors).some((e) => e?.hasError)}
+            isDisabled={
+              !(idProp || healthcheckModelProp) ||
+              Object.values(errors).some((e) => e?.hasError)
+            }
             {...getOverrideProps(overrides, "SubmitButton")}
           ></Button>
         </Flex>

@@ -1,0 +1,14 @@
+{
+  "resourceName": "aikaAppUser",
+  "tableName": "aikaAppUser",
+  "partitionKey": {
+    "fieldName": "id",
+    "fieldType": "string"
+  },
+  "sortKey": {
+    "fieldName": "user_id",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

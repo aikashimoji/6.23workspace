@@ -7,19 +7,20 @@
 import * as React from "react";
 import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
+import { Healthcheck } from "../models";
 export declare type ValidationResponse = {
     hasError: boolean;
     errorMessage?: string;
 };
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
-export declare type NewForm1InputValues = {
+export declare type HealthcheckUpdateFormInputValues = {
     date?: string;
     time?: string;
     place?: string;
     option?: string;
     password?: string;
 };
-export declare type NewForm1ValidationValues = {
+export declare type HealthcheckUpdateFormValidationValues = {
     date?: ValidationFunction<string>;
     time?: ValidationFunction<string>;
     place?: ValidationFunction<string>;
@@ -27,22 +28,23 @@ export declare type NewForm1ValidationValues = {
     password?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type NewForm1OverridesProps = {
-    NewForm1Grid?: PrimitiveOverrideProps<GridProps>;
+export declare type HealthcheckUpdateFormOverridesProps = {
+    HealthcheckUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
     date?: PrimitiveOverrideProps<TextFieldProps>;
     time?: PrimitiveOverrideProps<TextFieldProps>;
     place?: PrimitiveOverrideProps<TextFieldProps>;
     option?: PrimitiveOverrideProps<TextFieldProps>;
     password?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
-export declare type NewForm1Props = React.PropsWithChildren<{
-    overrides?: NewForm1OverridesProps | undefined | null;
+export declare type HealthcheckUpdateFormProps = React.PropsWithChildren<{
+    overrides?: HealthcheckUpdateFormOverridesProps | undefined | null;
 } & {
-    clearOnSuccess?: boolean;
-    onSubmit?: (fields: NewForm1InputValues) => NewForm1InputValues;
-    onSuccess?: (fields: NewForm1InputValues) => void;
-    onError?: (fields: NewForm1InputValues, errorMessage: string) => void;
-    onChange?: (fields: NewForm1InputValues) => NewForm1InputValues;
-    onValidate?: NewForm1ValidationValues;
+    id?: string;
+    healthcheck?: Healthcheck;
+    onSubmit?: (fields: HealthcheckUpdateFormInputValues) => HealthcheckUpdateFormInputValues;
+    onSuccess?: (fields: HealthcheckUpdateFormInputValues) => void;
+    onError?: (fields: HealthcheckUpdateFormInputValues, errorMessage: string) => void;
+    onChange?: (fields: HealthcheckUpdateFormInputValues) => HealthcheckUpdateFormInputValues;
+    onValidate?: HealthcheckUpdateFormValidationValues;
 } & React.CSSProperties>;
-export default function NewForm1(props: NewForm1Props): React.ReactElement;
+export default function HealthcheckUpdateForm(props: HealthcheckUpdateFormProps): React.ReactElement;

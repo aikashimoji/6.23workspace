@@ -1,7 +1,7 @@
 export const schema = {
     "models": {
-        "Todos": {
-            "name": "Todos",
+        "Healthcheck": {
+            "name": "Healthcheck",
             "fields": {
                 "id": {
                     "name": "id",
@@ -10,15 +10,36 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "name": {
-                    "name": "name",
+                "date": {
+                    "name": "date",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
-                "email": {
-                    "name": "email",
+                "time": {
+                    "name": "time",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "place": {
+                    "name": "place",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "option": {
+                    "name": "option",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "password": {
+                    "name": "password",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -42,7 +63,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "Todos",
+            "pluralName": "Healthchecks",
             "attributes": [
                 {
                     "type": "model",
@@ -70,5 +91,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.4.4",
-    "version": "e4dff8d242b13901cea333200e3f595f"
+    "version": "fed96526bd9dde7505d372e9ab43032c"
 };

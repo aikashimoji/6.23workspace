@@ -1,51 +1,32 @@
 {
-  "master": {
+  "staging": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-amplifyhomes-master-124532-authRole",
-      "UnauthRoleArn": "arn:aws:iam::711556954185:role/amplify-amplifyhomes-master-124532-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::711556954185:role/amplify-amplifyhomes-master-124532-authRole",
+      "AuthRoleName": "amplify-shimojiapp-staging-32528-authRole",
+      "UnauthRoleArn": "arn:aws:iam::711556954185:role/amplify-shimojiapp-staging-32528-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::711556954185:role/amplify-shimojiapp-staging-32528-authRole",
       "Region": "ap-northeast-2",
-      "DeploymentBucketName": "amplify-amplifyhomes-master-124532-deployment",
-      "UnauthRoleName": "amplify-amplifyhomes-master-124532-unauthRole",
-      "StackName": "amplify-amplifyhomes-master-124532",
-      "StackId": "arn:aws:cloudformation:ap-northeast-2:711556954185:stack/amplify-amplifyhomes-master-124532/33da6a60-fbc3-11ed-b21e-06ff2b3480e2",
-      "AmplifyAppId": "d2cuiqmj5lvmnb",
-      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-amplifyhomes-master-124532-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
+      "DeploymentBucketName": "amplify-shimojiapp-staging-32528-deployment",
+      "UnauthRoleName": "amplify-shimojiapp-staging-32528-unauthRole",
+      "StackName": "amplify-shimojiapp-staging-32528",
+      "StackId": "arn:aws:cloudformation:ap-northeast-2:711556954185:stack/amplify-shimojiapp-staging-32528/cd8e8c10-f5f4-11ed-945f-06153c832460",
+      "AmplifyAppId": "d1p6vs2vzf2r3f",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-shimojiapp-staging-32528-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "auth": {
-        "amplifyhomes": {},
-        "userPoolGroups": {}
-      },
-      "storage": {
-        "s3amplifyhomesstorage855d51b1": {},
-        "sakumotoApp": {},
-        "sakumotoAppUser": {}
+        "shimojiapp": {}
       },
       "function": {
-        "sakumotodailyreportc9355e11": {},
-        "sakumotodailyreportcd1132b6": {},
-        "todoFunction": {
-          "deploymentBucketName": "amplify-amplifyhomes-master-124532-deployment",
-          "s3Key": "amplify-builds/todoFunction-476a724a686161584741-build.zip"
-        },
-        "LambdaTest": {
-          "deploymentBucketName": "amplify-amplifyhomes-master-124532-deployment",
-          "s3Key": "amplify-builds/LambdaTest-42587a6b717542657639-build.zip"
-        },
-        "LambdaTest1": {
-          "deploymentBucketName": "amplify-amplifyhomes-master-124532-deployment",
-          "s3Key": "amplify-builds/LambdaTest1-43516234616144413742-build.zip"
-        },
-        "sakumotoAppUser": {
-          "deploymentBucketName": "amplify-amplifyhomes-master-124532-deployment",
-          "s3Key": "amplify-builds/sakumotoAppUser-62594f3642744f463044-build.zip"
+        "aikaAppUser": {
+          "deploymentBucketName": "amplify-shimojiapp-staging-32528-deployment",
+          "s3Key": "amplify-builds/aikaAppUser-3332465a6d614d364242-build.zip"
         }
       },
+      "storage": {
+        "aikaAppUser": {}
+      },
       "api": {
-        "LambdaTest": {},
-        "todoApps": {},
-        "sakumotoAppUser": {}
+        "aikaAppUser": {}
       }
     }
   }

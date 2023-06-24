@@ -1,29 +1,43 @@
-import { ModelInit, MutableModel } from "@aws-amplify/datastore";
+import { ModelInit, MutableModel, __modelMeta__, ManagedIdentifier } from "@aws-amplify/datastore";
 // @ts-ignore
 import { LazyLoading, LazyLoadingDisabled } from "@aws-amplify/datastore";
 
-type TodosMetaData = {
-  readOnlyFields: 'createdAt' | 'updatedAt';
-}
 
-type EagerTodos = {
+
+
+
+type EagerHealthcheck = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Healthcheck, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
   readonly id: string;
-  readonly name?: string | null;
-  readonly email?: string | null;
+  readonly date?: string | null;
+  readonly time?: string | null;
+  readonly place?: string | null;
+  readonly option?: string | null;
+  readonly password?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
 
-type LazyTodos = {
+type LazyHealthcheck = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Healthcheck, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
   readonly id: string;
-  readonly name?: string | null;
-  readonly email?: string | null;
+  readonly date?: string | null;
+  readonly time?: string | null;
+  readonly place?: string | null;
+  readonly option?: string | null;
+  readonly password?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
 
-export declare type Todos = LazyLoading extends LazyLoadingDisabled ? EagerTodos : LazyTodos
+export declare type Healthcheck = LazyLoading extends LazyLoadingDisabled ? EagerHealthcheck : LazyHealthcheck
 
-export declare const Todos: (new (init: ModelInit<Todos, TodosMetaData>) => Todos) & {
-  copyOf(source: Todos, mutator: (draft: MutableModel<Todos, TodosMetaData>) => MutableModel<Todos, TodosMetaData> | void): Todos;
+export declare const Healthcheck: (new (init: ModelInit<Healthcheck>) => Healthcheck) & {
+  copyOf(source: Healthcheck, mutator: (draft: MutableModel<Healthcheck>) => MutableModel<Healthcheck> | void): Healthcheck;
 }

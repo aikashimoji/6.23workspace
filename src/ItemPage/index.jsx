@@ -3,17 +3,8 @@ import { DatePicker, Select, Form, Button, Space, Input } from 'antd';
 import { Auth } from 'aws-amplify';
 import axios from 'axios';
 import { PlusOutlined } from '@ant-design/icons';
+import {hospitals} from '../LoadData/Config/index.jsx';
 
-const hospitals = [
-  {
-    name: 'すながわ内科クリニック',
-    address: '〒904-2244 沖縄県うるま市江洲６００−５',
-  },
-  {
-    name: '社会医療法人敬愛会ちばなクリニック',
-    address: '〒904-2143 沖縄県沖縄市知花６丁目２５−１５',
-  },
-];
 
 const ItemPage = () => {
   const [form] = Form.useForm();

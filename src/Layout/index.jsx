@@ -2,11 +2,15 @@ import { useState, useEffect } from 'react';
 import { Menu, Layout, Row, Col, message } from 'antd';
 import { Link } from 'react-router-dom';
 import { Auth } from '@aws-amplify/auth';
-import AuthContext from '../AuthContext';  // AuthContextのインポート
+import AuthContext from '../AuthContext';
 
 const MainLayout = ({children}) => {
   const { Header, Footer, Content } = Layout;
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [authData, setAuthData] = useState({
+    isAuthenticated: false,
+    email: null,
+    sub: null
+  });
 
   useEffect(() => {
     checkAuthState();
@@ -14,17 +18,29 @@ const MainLayout = ({children}) => {
 
   async function checkAuthState() {
     try {
-      await Auth.currentAuthenticatedUser();
-      setIsAuthenticated(true);
+      const user = await Auth.currentAuthenticatedUser();
+      setAuthData({
+        isAuthenticated: true,
+        email: user.attributes.email,
+        sub: user.attributes.sub
+      });
     } catch {
-      setIsAuthenticated(false);
+      setAuthData({
+        isAuthenticated: false,
+        email: null,
+        sub: null
+      });
     }
   }
 
   async function handleLogout() {
     try {
       await Auth.signOut();
-      setIsAuthenticated(false);
+      setAuthData({
+        isAuthenticated: false,
+        email: null,
+        sub: null
+      });
     } catch (error) {
       message.error('認証に失敗しました');
     }
@@ -32,7 +48,7 @@ const MainLayout = ({children}) => {
 
   return (
     // AuthContext.Providerを追加し、認証状態を共有します
-    <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
+    <AuthContext.Provider value={authData} >
     <Layout>
       <Header style={{ display: 'flex', alignItems: 'center' }}>
         <div className="demo-logo" />
@@ -52,7 +68,7 @@ const MainLayout = ({children}) => {
               <Menu.Item key="3">
                 <Link to="/file_uploader">ファイルアップ</Link>
               </Menu.Item>
-              {isAuthenticated && (
+              {authData.isAuthenticated && (
                 <Menu.Item key="4" onClick={handleLogout}>
                   ログアウト
                 </Menu.Item>

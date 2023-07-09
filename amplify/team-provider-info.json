@@ -19,7 +19,7 @@
       "function": {
         "aikaAppUser": {
           "deploymentBucketName": "amplify-shimojiapp-staging-32528-deployment",
-          "s3Key": "amplify-builds/aikaAppUser-3332465a6d614d364242-build.zip"
+          "s3Key": "amplify-builds/aikaAppUser-4c304f6171483859464d-build.zip"
         }
       },
       "storage": {

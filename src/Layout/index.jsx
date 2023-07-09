@@ -9,7 +9,8 @@ const MainLayout = ({children}) => {
   const [authData, setAuthData] = useState({
     isAuthenticated: false,
     email: null,
-    sub: null
+    sub: null,
+    token:null
   });
 
   useEffect(() => {
@@ -22,13 +23,15 @@ const MainLayout = ({children}) => {
       setAuthData({
         isAuthenticated: true,
         email: user.attributes.email,
-        sub: user.attributes.sub
+        sub: user.attributes.sub,
+        token:user.signInUserSession.idToken.jwtToken,
       });
     } catch {
       setAuthData({
         isAuthenticated: false,
         email: null,
-        sub: null
+        sub: null,
+        token:null
       });
     }
   }

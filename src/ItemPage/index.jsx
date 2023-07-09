@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { DatePicker, Select, Form, Button, Space, Input, Modal } from 'antd';
+import { DatePicker, Select, Form, Button, Space, Input, Modal, Typography } from 'antd';
 import { Auth } from 'aws-amplify';
 import axios from 'axios';
 import { PlusOutlined } from '@ant-design/icons';
@@ -12,6 +12,7 @@ const ItemPage = () => {
   const authData = useContext(AuthContext); 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false); 
+  const { Title } = Typography;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,7 +25,6 @@ const ItemPage = () => {
         };
         const headerAuth = { headers: { Authorization: authData.token } };
         const response = await axios.post('https://unbq00cy25.execute-api.ap-northeast-2.amazonaws.com/staging/users', { action: 'hospital_reserve_status', ...dataToSend }, headerAuth);
-        console.log(response);
         const formattedData = response.data.entries.map(entry => ({
           ...entry,
           date: moment(entry.date, 'YYYY-MM-DD'),
@@ -32,6 +32,7 @@ const ItemPage = () => {
         setData(formattedData);
         form.setFieldsValue({ entries: formattedData });
       } catch (error) {
+        // eslint-disable-next-line
         console.error(error);
       } finally {
         setLoading(false);
@@ -63,7 +64,6 @@ const ItemPage = () => {
     const headerAuth = { headers: { Authorization: authData.token } };
     axios.post('https://unbq00cy25.execute-api.ap-northeast-2.amazonaws.com/staging/users', { action: 'hospital_reserve', ...dataToSend },headerAuth)
     .then(response => {
-      console.log(response.data);
       const formattedData = {
         ...response.data,
         entries: response.data.entries.map(entry => ({
@@ -74,6 +74,7 @@ const ItemPage = () => {
       form.setFieldsValue(formattedData); // フォームの初期値を設定
     })
     .catch(error => {
+      //eslint-disable-next-line
       console.error(error);
     });
   };
@@ -87,7 +88,7 @@ const ItemPage = () => {
 
   return (
     <div style={{paddingTop:"10px"}}>
-
+      <Title>健康診断申請</Title>
       <Modal
         title="Loading"
         visible={loading}

@@ -4,8 +4,8 @@
  * Any changes to this file will be overwritten when running amplify pull. *
  **************************************************************************/
 
-export { default as Desktop1Collection } from "./Desktop1Collection";
-export { default as Desktop1 } from "./Desktop1";
-export { default as Desktop2 } from "./Desktop2";
-export { default as Desktop3 } from "./Desktop3";
+export { default as Component2 } from "./Component2";
+export { default as UserRogin } from "./UserRogin";
+export { default as Component1 } from "./Component1";
+export { default as Component1Collection } from "./Component1Collection";
 export { default as studioTheme } from "./studioTheme";
